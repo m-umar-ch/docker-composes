@@ -1,0 +1,22 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    volumes:
+      - n8n_data:/root/n8n
+    tty: true
+    stdin_open: true
+    environment:
+      N8N_METRICS: "true"
+      QUEUE_HEALTH_CHECK_ACTIVE: "true"
+      N8N_RUNNERS_ENABLED: "true"
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      N8N_HOST: "neightn.onlinecrockerystore.com"
+      N8N_PROTOCOL: "https"
+      WEBHOOK_URL: "https://neightn.onlinecrockerystore.com"
+
+volumes:
+  n8n_data:
